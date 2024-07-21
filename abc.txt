@@ -1,0 +1,465 @@
+import React from "react";
+import "./Testimonials.css"
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { testimonial } from "../../data";
+
+
+const Testimonials = () => {
+
+    const settings = {
+        infinite: true,
+        speed: 500,
+        slidesToShow: 2,
+        centerMode:true,
+        pauseOnHover:true,
+        autoplay:true,
+        autoplaySpeed: 3000,
+        responsive:[
+            {
+                breakpoint:600,
+                settings:{
+                    slidesToShow:1,
+                    centerPadding:0,
+                }
+            }
+        ]
+    };
+
+    return(
+        <section id="testimonial">
+
+            <div className="container">
+                <h1 className="title">
+                    Clients <span className="g-text">Testimonials</span>
+                </h1>
+                <h3 className="sub__title">What our clients are saying</h3>
+                <Slider {...settings} className="testimonial__container" >
+                    {
+                        testimonial.map((list,index) => (
+                            <React.Fragment key={index}>
+                                <div className="user__row">
+                                    <div className="profile">
+                                        <img src={list.image} alt={list.title} />
+                                    </div>
+                                    <div className="details">
+                                        <h3 className="name">{list.name}</h3>
+                                        <small className="text__muted">CEO of benvix</small>
+                                    </div>
+                                </div>
+                                <p className="text__muted content">{list.review}</p>
+                            </React.Fragment>
+                        ))
+                    }
+                </Slider>
+            </div>
+        </section>
+    )
+}
+
+export default Testimonials;
+
+
+---------------------------------------------
+#testimonial{
+    background: var(--color-ui-primary);
+    overflow: hidden;
+}
+
+#testimonial .testimonial__container{
+    margin-top: 50px;
+}
+
+#testimonial .slick-prev,
+#testimonial .slick-next{
+    display: none;
+}
+
+#testimonial .slick-track{
+    display: flex !important;
+    gap: 20px;
+}
+
+#testimonial .slick-slide{
+    height: inherit !important;
+    padding: 20px;
+    border-radius: var(--radius-3);
+    display: flex;
+    flex-direction: column;
+    background: var(--color-ui-primary);
+    transition: var(--transition);
+}
+
+#testimonial .slick-slide:hover{
+    transform: scale(0.97);
+}
+
+#testimonial .slick-slide > div{
+    flex: 1;
+    display: flex;
+    align-items: stretch;
+    flex-direction: column;
+}
+
+#testimonial .slick-slide .user__row{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+#testimonial .slick-slide .user__row .name{
+    font-size: 15px;   
+}
+
+#testimonial .slick-slide .content{
+    flex: 1;
+}
+
+@media (max-width:600px){
+    #testimonial .slick-track{
+        gap: 0;
+    }
+}
+
+---------------------------------------------------------
+---------------------------------------------------------
+
+import React, { useEffect, useState } from "react";
+import { projectsData, projectsNav } from "./Data";
+import WorkItems from "./WorkItems";
+import Marquee from 'react-fast-marquee';
+
+const Works = () => {
+    const [item, setItem] = useState({ name: 'all' });
+    const [projects, setProjects] = useState([]);
+    const [active, setActive] = useState(0);
+
+    useEffect(() => {
+        if (item.name === "all") {
+            setProjects(projectsData);
+        } else {
+            const newProjects = projectsData.filter((project) => {
+                return project.category.toLowerCase() === item.name;
+            });
+            setProjects(newProjects);
+        }
+    }, [item]);
+
+    const handleClick = (e, index) => {
+        setItem({ name: e.target.textContent.toLowerCase() });
+        setActive(index);
+    };
+
+    return (
+        <div>
+            <div className="work__filters">
+                {projectsNav.map((item, index) => (
+                    <span
+                        onClick={(e) => handleClick(e, index)}
+                        className={`${active === index ? 'active-work' : ''} work__item`}
+                        key={index}
+                    >
+                        {item.name}
+                    </span>
+                ))}
+            </div>
+
+            <div className="marquee-container" style={{ overflow: 'hidden' }}>
+                <Marquee 
+                    gradientWidth={0} 
+                    speed={50} 
+                    pauseOnHover={true} // This line stops the marquee on hover
+                >
+                    <div className="work__container" style={{ display: 'flex', gap: '2rem' }}>
+                        {projects.map((item) => (
+                            <WorkItems item={item} key={item.id} />
+                        ))}
+                    </div>
+                </Marquee>
+            </div>
+        </div>
+    );
+};
+
+export default Works;
+
+--------------------------------------------------------------------
+.work__filters{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.75rem;
+    margin-bottom: var(--mb-2);
+    margin-top: 15px;
+}
+
+.work__item{
+    cursor: pointer;
+    color: black;
+    padding: 0.25rem 0.75rem;
+    font-weight: var(--font-medium);
+    border-radius: 0.5rem;
+    text-transform: capitalize;
+}
+
+.work__item:hover{
+    background-color: black;
+    color: white;
+}
+
+.work__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    justify-content: center;
+}
+
+.work__button{
+    color: black;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+}
+
+.work__button-icon{
+    font-size: 1rem;
+    transition: 0.45s;
+}
+
+.section__heading{
+    margin-top: 15px;
+}
+
+.work__card{
+    background-color: var(--container-color);
+    border: 1px solid rgba(0,0,0,0.1);
+    padding: 1.25rem;
+    border-radius: 1rem;
+    padding-bottom: 4.5em;
+    margin: 10px;
+}
+
+.work__img{
+    width: 100%; /* Make the image fill the card width */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 1rem;
+    margin-bottom: 15px;
+}
+
+.work__title{
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb-0-5);
+
+}
+
+.work__button:hover .work__button-icon{
+    transform: translateX(0.25rem);
+}
+
+.active-work{
+    background-color: black;
+    color: white;
+}
+
+.work__container {
+    display: flex;
+    /* flex-wrap: wrap; Wrap cards to next line if overflow */
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.work__card:hover {
+    transform: scale(1.05);
+}
+
+.work__card {
+    flex: 0 0 auto;
+    width: 300px; 
+    margin-right: 2rem;
+    transition: transform 0.3s ease;
+}
+
+
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .popup-content {
+    background-color:white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 80%;
+    height: 80%;
+    max-width: 1000px;
+    max-height: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  
+  .popup-img {
+    max-width: 100%;
+    max-height: calc(100% - 40px);
+    object-fit: contain;
+  }
+  
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: #d32f2f; 
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    background-color: #474241;
+  }
+
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .work__container{
+        gap: 1.25rem;
+    }
+
+    .work__card{
+        padding: 1rem;
+    }
+
+    .work__img{
+        margin-bottom: 0.75rem;
+    }
+
+    .work__title{
+        margin-bottom: 0.25rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .work__container {
+        grid-template-columns: 1fr; /* Single column for smaller screens */
+    }
+    .work__card{
+        padding-bottom: 3rem;
+    }
+}  
+
+@media screen and (max-width: 576px) {
+    .work__container{
+        grid-template-columns: 1fr;
+    }
+    .work__img{
+        width: 100%;
+    }
+}  
+
+@media screen and (max-width: 350px) {
+    .work__item{
+        font-size: var(--small-font-size);
+    }
+    .work__filters{
+        column-gap: 0.25rem;
+    }
+}
+
+----------------------------------------------------------------------
+-----------------------------------------------------------------------
+#testimonial{
+    background: var(--color-ui-primary);
+    overflow: hidden;
+}
+
+#testimonial .testimonial__container{
+    margin-top: 50px;
+}
+
+#testimonial .testimonial__slide {
+    padding: 20px;
+    border-radius: var(--radius-3);
+    display: flex;
+    flex-direction: column;
+    background: var(--color-ui-primary);
+    transition: var(--transition);
+    margin-right: 20px;
+    width: 400px; /* Adjust as needed */
+}
+
+#testimonial .testimonial__slide:hover{
+    transform: scale(0.97);
+}
+
+.pcont{
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    padding:60px 20px;
+}
+
+.testimonial-icon {
+    font-size: 2.5em; /* Increased size */
+    margin-right: 10px;
+    color: var(--color-text-primary); /* Ensure icon color contrasts with background */
+}
+
+#testimonial .user__row{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+#testimonial .user__row .name{
+    font-size: 1.2em; /* Slightly increased for better proportion with icon */
+    margin: 0;
+}
+
+#testimonial .content{
+    flex: 1;
+    margin-top: 10px; /* Add some space between user row and content */
+}
+
+#testimonial .testi {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#testimonial .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width:600px){
+    #testimonial .testimonial__slide {
+        width: 300px; /* Adjust for mobile */
+    }
+    
+    .testimonial-icon {
+        font-size: 2em; /* Slightly smaller on mobile */
+    }
+    
+    #testimonial .user__row .name {
+        font-size: 1em; /* Smaller on mobile */
+    }
+}

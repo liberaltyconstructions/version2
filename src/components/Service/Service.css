@@ -1,0 +1,72 @@
+/* Service.css */
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 70vh;
+  padding: 40px 20px;
+}
+
+.wrapper {
+  max-width: 1200px;
+  width: 100%;
+}
+
+.card-area {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  width: calc(50% - 20px);
+  display: flex;
+  flex-direction: column;
+  min-height: 500px; /* Increased minimum height */
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 30px; /* Increased bottom margin */
+  font-size: 24px; /* Larger font size */
+}
+
+.features {
+  list-style-type: none;
+  padding: 0;
+  margin-bottom: 30px;
+}
+
+.features li {
+  margin-bottom: 20px; /* Increased spacing between list items */
+  display: flex;
+  align-items: flex-start;
+  font-size: 16px; /* Slightly larger font size */
+}
+
+.features i {
+  color: var(--color-primary);
+  margin-right: 15px;
+  font-size: 18px; /* Slightly larger icon */
+}
+
+
+
+
+@media (max-width: 900px) {
+  .card-area {
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+    margin-bottom: 30px;
+    min-height: auto; /* Allow height to adjust on mobile */
+  }
+}

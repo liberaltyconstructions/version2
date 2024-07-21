@@ -1,0 +1,63 @@
+#testimonial{
+    background: var(--color-ui-primary);
+    overflow: hidden;
+}
+
+#testimonial .testimonial__container{
+    margin-top: 50px;
+}
+
+#testimonial .testimonial__slide {
+    padding: 20px;
+    border-radius: var(--radius-3);
+    display: flex;
+    flex-direction: column;
+    background: var(--color-ui-primary);
+    transition: var(--transition);
+    margin-right: 20px;
+    width: 400px; /* Adjust as needed */
+}
+
+#testimonial .testimonial__slide:hover{
+    transform: scale(0.97);
+}
+
+.pcont{
+    width: 100%;
+    max-width: 1500px;
+    margin: auto;
+    padding:60px 20px;
+}
+
+#testimonial .user__row{
+    display: flex;
+    align-items: center;
+    padding: 10px 0; /* Removed left padding to align with the container's left edge */
+}
+
+#testimonial .user__row .name{
+    font-size: 1.2em; /* Slightly increased for better visibility */
+    margin: 0;
+    font-weight: bold; /* Make the name stand out */
+}
+
+#testimonial .content{
+    flex: 1;
+    margin-top: 10px;
+}
+
+#testimonial .details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width:600px){
+    #testimonial .testimonial__slide {
+        width: 300px; /* Adjust for mobile */
+    }
+    
+    #testimonial .user__row .name {
+        font-size: 1em; /* Smaller on mobile */
+    }
+}
