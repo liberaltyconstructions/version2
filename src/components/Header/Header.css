@@ -1,6 +1,6 @@
 #header{
     background: var(--glow-1);
-    position: static !important;
+    position: relative !important;
 }
 
 #header::before{
