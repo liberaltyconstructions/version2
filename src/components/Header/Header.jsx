@@ -36,11 +36,11 @@ const Header = () => {
 
   return (
     <header id="header" ref={container}>
+      {/* FIXED: Keep full__height only for header section */}
       <div className="container full__height">
         <div className="row">
           <div className="column">
             <h1 className="title">
-              
               <span className="m-text">Your Partner in Design, Infrastructure, and Project Success.</span>
             </h1>
             <p className="text__muted description">
@@ -48,7 +48,7 @@ const Header = () => {
             </p>
 
             <div className="buttons__container">
-              <Link to="" smooth={true} className="btn">
+              <Link to="about" smooth={true} className="btn">
                 Welcome
               </Link>
             </div>

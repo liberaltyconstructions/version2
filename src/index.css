@@ -1,33 +1,32 @@
+/* Updated index.css - Fix the container spacing issue */
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-  /* --color-primary:rgb(14,95,195);
-  --color-primary-accent:blue; */
 
-  :root {
-    --color-primary: rgba(135,175,205,1); /* Light blue */
-    --color-primary-accent: rgba(254,127,0,1); /* Orange */
-    --color-success: #33c648; /* Kept the same */
-    --color-warning: #ffbb55; /* Kept the same */
-    --color-white: #ffffff;
-    --color-text: #111111;
-    --color-muted: #7d7d82;
-    --radius-1: 4px;
-    --radius-2: 0.8rem;
-    --radius-3: 1.2rem;
-    --radius-4: 2rem;
-    --radius-5: 100%;
-    --transition: all 400ms ease;
-    --color-ui-primary: #f0f5f9; /* Lighter shade of primary color */
-    --color-ui-secondary: #FFFFFF;
-    --color-ui-variant: #d0e1f9; /* Another shade of primary color */
-    --gray-border: 1px solid rgba(89, 88, 88, 0.333);
-    --gradient-1: linear-gradient(to right, rgba(135,175,205,1) 0%, rgba(254,127,0,1) 100%);
-    --gradient-2: linear-gradient(rgba(254,127,0,1), rgba(135,175,205,1));
-    --shadow-1: 0 0 10px 0 rgba(0,0,0,0.2);
-    --glow-1: radial-gradient(rgba(135,175,205,0.2) 0%, rgba(255, 255, 255,0.5));
-  }
+:root {
+  --color-primary: rgba(135,175,205,1); /* Light blue */
+  --color-primary-accent: rgba(254,127,0,1); /* Orange */
+  --color-success: #33c648;
+  --color-warning: #ffbb55;
+  --color-white: #ffffff;
+  --color-text: #111111;
+  --color-muted: #7d7d82;
+  --radius-1: 4px;
+  --radius-2: 0.8rem;
+  --radius-3: 1.2rem;
+  --radius-4: 2rem;
+  --radius-5: 100%;
+  --transition: all 400ms ease;
+  --color-ui-primary: #f0f5f9;
+  --color-ui-secondary: #FFFFFF;
+  --color-ui-variant: #d0e1f9;
+  --gray-border: 1px solid rgba(89, 88, 88, 0.333);
+  --gradient-1: linear-gradient(to right, rgba(135,175,205,1) 0%, rgba(254,127,0,1) 100%);
+  --gradient-2: linear-gradient(rgba(254,127,0,1), rgba(135,175,205,1));
+  --shadow-1: 0 0 10px 0 rgba(0,0,0,0.2);
+  --glow-1: radial-gradient(rgba(135,175,205,0.2) 0%, rgba(255, 255, 255,0.5));
+}
 
 *{
   margin: 0;
@@ -89,17 +88,29 @@ small{
   width: 100%;
   max-width: 1100px;
   margin: auto;
-  padding:60px 20px;
+  padding: 60px 20px;
 }
 
+/* FIXED: Remove min-height from regular containers, only apply to header */
 .container.full__height{
   min-height: 100vh;
+}
+
+/* FIXED: Remove full__height from non-header sections on mobile */
+@media (max-width: 900px) {
+  .container.full__height:not(#header .container) {
+    min-height: auto;
+  }
+  
+  /* Reduce padding on mobile to prevent excessive spacing */
+  .container {
+    padding: 40px 20px;
+  }
 }
 
 .text__muted{
   color: var(--color-muted);
 }
-
 
 .color__primary{
   color: var(--color-primary);
@@ -159,12 +170,13 @@ small{
   cursor: pointer;
   transition: var(--transition);
   color: var(--color-text);
-  background: var(--color-ui-secondary) ;
+  background: var(--color-ui-secondary);
 }
 
 .icon__container:hover{
   transform: scale(1.2);
 }
+
 .btn{
   padding: 15px 25px;
   border-radius: var(--radius-4);
@@ -196,9 +208,6 @@ small{
 }
 
 @media (max-width:900px){
-  .container{
-    padding: 40px 20px;
-  }
   .title{
     font-size: 30px;
   }
