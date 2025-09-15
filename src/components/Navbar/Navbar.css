@@ -45,20 +45,24 @@
     color: var(--color-text);
 }
 
+/* Original active state */
 .navbar .nav__tabs .tab.active{
     color: var(--color-white);
     background: var(--gradient-1);
 }
 
-
+/* NEW: Active state when navbar is visible/sticky */
+.navbar.visible .nav__tabs .tab.active{
+    color: var(--color-white) !important;
+    background: var(--gradient-1) !important;
+}
 
 .navbar .contact__btn{
     background: var(--gradient-1);
     color: var(--color-white);
 }
 
-.navbar .cancel__btn,
-.navbar .menu__btn{
+.navbar .cancel__btn, .navbar .menu__btn{
     display: none;
     background: transparent;
     font-size: 25px;
@@ -86,7 +90,6 @@
     display: none;
 }
 
-
 /* Responsive */
 @media (max-width:1000px){
     .navbar .nav__tabs{
@@ -113,9 +116,15 @@
         color: var(--color-text);
     }
 
+    /* NEW: Mobile active state */
+    .navbar .nav__tabs .tab.active{
+        color: var(--color-white);
+        background: var(--gradient-1);
+    }
+
     .navbar .cancel__btn,
     .navbar .menu__btn{
-        display: flex; 
+        display: flex;
     }
 
     .sidebar__overlay{

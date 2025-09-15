@@ -9,21 +9,47 @@ import gsap from "gsap"
 import { useGSAP } from "@gsap/react";
 
 const Navbar = () => {
-
     const container = useRef(null);
-
     const [open,setOpen] = useState(false);
     const [visible,setVisible] = useState(false);
+    const [activeTab, setActiveTab] = useState('header'); // Manual active state
+
     const handleScroll = () => {
         const currentScrollPosition = window.scrollY;
-            if(currentScrollPosition > 145){
-                return setVisible(true);
-            }
+        
+        // Handle navbar visibility
+        if(currentScrollPosition > 145){
+            setVisible(true);
+        } else {
             setVisible(false);
+        }
+
+        // Manual active section detection
+        const sections = navTabs.map(tab => ({
+            id: tab.id,
+            element: document.getElementById(tab.id)
+        })).filter(section => section.element);
+
+        let currentSection = 'header'; // Default to header
+
+        for (let i = sections.length - 1; i >= 0; i--) {
+            const section = sections[i];
+            const rect = section.element.getBoundingClientRect();
+            
+            // If section is in viewport (considering navbar height)
+            if (rect.top <= 100) {
+                currentSection = section.id;
+                break;
+            }
+        }
+
+        setActiveTab(currentSection);
     };
 
     useEffect(()=>{
         window.addEventListener("scroll",handleScroll);
+        // Set initial active tab
+        handleScroll();
         return () => window.removeEventListener("scroll",handleScroll);
     },[])
 
@@ -59,12 +85,13 @@ const Navbar = () => {
                     navTabs.map((tab,index) => (
                         <Link
                         to={tab.id}
-                        className='tab'
-                        activeClass='active'
+                        className={`tab ${activeTab === tab.id ? 'active' : ''}`} // Manual active class
                         smooth={true}
-                        spy={true}
                         offset={-70}
-                        onClick={() => setOpen(false)}
+                        onClick={() => {
+                            setOpen(false);
+                            setActiveTab(tab.id); // Set active on click
+                        }}
                         key={index}
                         >
                             <p>{tab.name}</p>

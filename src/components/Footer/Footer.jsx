@@ -10,12 +10,11 @@ const Footer = () =>{
                 {/* <img src={logo} alt="" /> */}
                 <h3 className="title">Liberalty Constructions</h3>
 
-                <p className="text__muted ftr">CIN: U05190KA2005PTC036119
-                </p>
+                <p className="text__muted ftr">CIN: U05190KA2005PTC036119</p>
 
                 <div className="footer__social">
-                <a href="https://www.instagram.com/" className="footer__social-link" target="_blank">
-                    <i class="bi bi-instagram"></i>
+                <a href="https://x.com/" className="footer__social-link" target="_blank">
+                    <i class="bi bi-twitter-x"></i>
                 </a>
 
             {/* <a href="https://github.com/deepesh-reddy/" className="footer__social-link" target="_blank">

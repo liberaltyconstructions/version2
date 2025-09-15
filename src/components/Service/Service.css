@@ -1,72 +1,379 @@
-/* Service.css */
+/* Beautiful Accordion Styles */
+
 .container1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 70vh;
-  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+  /* min-height: 100vh; */
 }
 
 .wrapper {
-  max-width: 1200px;
-  width: 100%;
+  /* background: rgba(255, 255, 255, 0.95); */
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  /* box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); */
+  padding: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .card-area {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-.card {
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-  padding: 30px;
-  width: calc(50% - 20px);
+/* Enhanced Accordion Styles */
+[data-slot="accordion"] {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+[data-slot="accordion-item"] {
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+}
+
+[data-slot="accordion-item"]:last-child {
+  border-bottom: none;
+}
+
+[data-slot="accordion-item"]:hover {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  transform: translateY(-1px);
+}
+
+[data-slot="accordion-trigger"] {
+  padding: 1.75rem 2rem;
+  background: transparent;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+[data-slot="accordion-trigger"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+  transform-origin: bottom;
+}
+
+[data-slot="accordion-trigger"]:hover::before,
+[data-slot="accordion-trigger"][data-state="open"]::before {
+  transform: scaleY(1);
+}
+
+[data-slot="accordion-trigger"]:hover {
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  padding-left: 2.5rem;
+}
+
+[data-slot="accordion-trigger"] .lucide-chevron-down {
+  color: #64748b;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+[data-slot="accordion-trigger"]:hover .lucide-chevron-down {
+  color: #667eea;
+  transform: translateY(0.5px) scale(1.1);
+}
+
+[data-slot="accordion-trigger"][data-state="open"] .lucide-chevron-down {
+  transform: rotate(180deg) scale(1.1);
+  color: #667eea;
+}
+
+/* Accordion Content Styling */
+[data-slot="accordion-content"] {
+  background: linear-gradient(135deg, #fafbfc 0%, #ffffff 100%);
+  border-top: 1px solid rgba(226, 232, 240, 0.3);
+}
+
+[data-slot="accordion-content"] > div {
+  padding: 2rem;
+  position: relative;
+}
+
+[data-slot="accordion-content"] > div::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2rem;
+  right: 2rem;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(102, 126, 234, 0.3) 50%, transparent 100%);
+}
+
+[data-slot="accordion-content"] p {
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  color: #475569;
+  font-size: 0.95rem;
+}
+
+[data-slot="accordion-content"] p:last-child {
+  margin-bottom: 0;
+}
+
+/* Typography Enhancements */
+[data-slot="accordion-trigger"] {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #1e293b;
+  letter-spacing: -0.025em;
+}
+
+/* Animation Classes */
+@keyframes accordion-down {
+  from {
+    height: 0;
+    opacity: 0;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes accordion-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.animate-accordion-down {
+  animation: accordion-down 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-accordion-up {
+  animation: accordion-up 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Focus Styles for Accessibility */
+[data-slot="accordion-trigger"]:focus-visible {
+  outline: none;
+  ring: 3px;
+  ring-color: rgba(102, 126, 234, 0.3);
+  ring-offset: 2px;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.08) 100%);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .container1 {
+    padding: 1rem;
+  }
+  
+  .wrapper {
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+  
+  [data-slot="accordion-trigger"] {
+    padding: 1.25rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  [data-slot="accordion-trigger"]:hover {
+    padding-left: 2rem;
+  }
+  
+  [data-slot="accordion-content"] > div {
+    padding: 1.5rem;
+  }
+  
+  [data-slot="accordion-content"] > div::before {
+    left: 1.5rem;
+    right: 1.5rem;
+  }
+}
+
+/* Subtle hover glow effect */
+[data-slot="accordion-item"]:hover {
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.08);
+}
+
+/* Enhanced text styling for better readability */
+[data-slot="accordion-content"] p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Add a subtle pattern overlay */
+.wrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(circle at 2px 2px, rgba(102, 126, 234, 0.05) 1px, transparent 0);
+  background-size: 20px 20px;
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-area {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- containers inside accordion (image + text) ---------- */
+
+/* wrapper that stacks multiple cards */
+.cards-stack {
   display: flex;
   flex-direction: column;
-  min-height: 500px; /* Increased minimum height */
+  gap: 1.5rem;   /* space between containers */
+  width: 100%;
 }
 
-h2 {
-  text-align: center;
-  color: #333;
-  margin-top: 0;
-  margin-bottom: 30px; /* Increased bottom margin */
-  font-size: 24px; /* Larger font size */
+/* single container card (rounded box with subtle border & shadow) */
+.image-text-card {
+  background: linear-gradient(180deg, #ffffff 0%, #fbfdff 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(226, 232, 240, 0.9); /* #e6eef5-ish */
+  box-shadow: 0 8px 28px rgba(2, 6, 23, 0.06);
+  padding: 1.25rem;
+  overflow: hidden;
 }
 
-.features {
-  list-style-type: none;
-  padding: 0;
-  margin-bottom: 30px;
+/* subheading */
+.image-text-card .card-subheading {
+  font-size: 1.125rem; /* 18px */
+  font-weight: 600;
+  color: #0f172a;      /* slate-900 */
+  margin: 0 0 0.75rem 0;
+  letter-spacing: -0.01em;
 }
 
-.features li {
-  margin-bottom: 20px; /* Increased spacing between list items */
+/* layout: left image, right text */
+.image-and-text {
   display: flex;
-  align-items: flex-start;
-  font-size: 16px; /* Slightly larger font size */
+  gap: 1rem;
+  align-items: center;
 }
 
-.features i {
-  color: var(--color-primary);
-  margin-right: 15px;
-  font-size: 18px; /* Slightly larger icon */
+/* image container (keeps an exact visual box) - UPDATED FOR FIXED SIZE */
+.image-panel {
+  flex: 0 0 280px;         /* fixed width */
+  width: 280px;            /* explicit width */
+  height: 200px;           /* fixed height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 10px;
+  padding: 0.75rem;
+  background: #fff;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+  overflow: hidden;         /* ensure images don't overflow container */
+}
+
+/* the image itself - UPDATED FOR UNIFORM SIZE */
+.image-panel img {
+  display: block;
+  width: 100%;             /* fill container width */
+  height: 100%;            /* fill container height */
+  object-fit: cover;       /* crop to fit while maintaining aspect ratio */
+  object-position: center; /* center the image when cropping */
+  border-radius: 6px;      /* slight rounding to match container */
+}
+
+/* Alternative option: use object-fit: contain if you prefer to see full images without cropping */
+.image-panel img.contain {
+  object-fit: contain;     /* show full image, may have empty space */
+}
+
+/* text panel */
+.text-panel {
+  flex: 1 1 auto;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 10px;
+  min-height: 200px;       /* match image panel height */
+  display: flex;
+  align-items: center;     /* vertically center text */
+  justify-content: center; /* horizontally center the text block */
+  background: linear-gradient(180deg, rgba(250,250,252,1) 0%, rgba(255,255,255,0.95) 100%);
+  flex-direction: column;
+  padding: 20px;
+}
+
+/* paragraph inside text panel */
+.text-panel p {
+  margin: 0;
+  color: #334155;       /* slate-700 */
+  line-height: 1.6;
+  font-size: 1rem;
+  text-align: center;   /* change to left if you prefer left-aligned copy */
+  max-width: 52rem;
+}
+
+/* allow scroll chaining and momentum on mobile */
+.accordion-scroll {
+  overscroll-behavior: auto;       /* allow scroll to chain to parent when at edge */
+  -webkit-overflow-scrolling: touch; /* smooth momentum scrolling on iOS */
+  touch-action: pan-y;            /* let vertical panning behave normally */
 }
 
 
-
-
-@media (max-width: 900px) {
-  .card-area {
-    flex-direction: column;
+/* Responsive adjustments for fixed image sizes */
+@media (max-width: 1024px) {
+  .image-panel { 
+    flex: 0 0 240px; 
+    width: 240px; 
+    height: 180px; 
   }
+  .text-panel { min-height: 180px; }
+}
 
-  .card {
-    width: 100%;
-    margin-bottom: 30px;
-    min-height: auto; /* Allow height to adjust on mobile */
+@media (max-width: 768px) {
+  .image-and-text { 
+    flex-direction: column; 
+    gap: 0.75rem; 
   }
+  
+  .image-panel { 
+    width: 100%; 
+    max-width: 300px; 
+    height: 200px;
+    flex: none;
+  }
+  
+  .text-panel { 
+    width: 100%; 
+    padding: 0.75rem; 
+    min-height: 120px; 
+  }
+}
+
+@media (max-width: 480px) {
+  .image-panel {
+    height: 160px;  /* smaller on very small screens */
+  }
+}
+
+/* Optional: a decorative large rounded outer wrapper like your sketch */
+.accordion-outer-curve {
+  border-radius: 40px;
+  padding: 2rem;
+  border: 3px solid rgba(12, 12, 12, 0.95); /* change color/opacity as needed */
+  background: white;
 }

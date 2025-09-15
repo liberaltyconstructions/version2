@@ -1,0 +1,311 @@
+.project-slider-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.project-slider-container h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.project-slider-container p {
+    font-size: 1.125rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.card-stack-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 500px;
+    perspective: 1000px; /* Added for better 3D effect */
+}
+
+.card-stack-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 1100px;
+    height: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px; /* Enhanced 3D perspective */
+}
+
+.card-stack-item {
+    position: absolute;
+    width: 950px;
+    height: 450px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgb(255, 174, 0);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    will-change: transform, opacity; /* Optimize for animations */
+    backface-visibility: hidden; /* Prevent flickering */
+    transform-style: preserve-3d; /* Better 3D rendering */
+}
+
+.card-image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 18px;
+}
+
+.card-image-element {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 18px;
+    will-change: transform; /* Optimize for smooth scaling */
+}
+
+.card-stack-item:hover .card-image-element {
+    transform: scale(1.03);
+}
+
+/* Enhanced shadow effects for better depth perception */
+.card-stack-item:nth-child(1) {
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2), 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.card-stack-item:nth-child(2) {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-stack-item:nth-child(3) {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.card-stack-item:nth-child(4) {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08), 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Smooth transitions for all elements */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+    .card-stack-container {
+        min-height: 420px;
+    }
+    
+    .card-stack-wrapper {
+        max-width: 600px;
+        height: 400px;
+    }
+    
+    .card-stack-item {
+        width: 580px;
+        height: 380px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12), 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+    
+    .project-slider-container h1 {
+        font-size: 2.2rem;
+    }
+    
+    .project-slider-container p {
+        font-size: 1rem;
+    }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) {
+    .project-slider-container {
+        padding: 1.5rem 0.5rem;
+    }
+    
+    .card-stack-wrapper {
+        max-width: 500px;
+        height: 400px;
+        perspective: 800px;
+    }
+    
+    .card-stack-item {
+        width: 480px;
+        height: 280px;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1), 0 6px 15px rgba(0, 0, 0, 0.06);
+    }
+    
+    .project-slider-container h1 {
+        font-size: 2rem;
+    }
+    
+    .project-slider-container p {
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Mobile Portrait */
+@media (max-width: 640px) {
+    .project-slider-container {
+        padding: 0.5rem 0.5rem;
+    }
+    
+    .card-stack-wrapper {
+        max-width: 380px;
+        height: 350px;
+        perspective: 600px;
+    }
+    
+    .card-stack-item {
+        width: 360px;
+        height: 220px;
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+    
+    .project-slider-container h1 {
+        font-size: 1.8rem;
+    }
+    
+    .project-slider-container p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+    .project-slider-container {
+        padding: 0.5rem 0.25rem;
+    }
+    
+    .card-stack-wrapper {
+        max-width: 320px;
+        height: 320px;
+        perspective: 500px;
+    }
+    
+    .card-stack-item {
+        width: 300px;
+        height: 200px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.06), 0 3px 10px rgba(0, 0, 0, 0.04);
+    }
+    
+    .project-slider-container h1 {
+        font-size: 1.6rem;
+    }
+    
+    .project-slider-container p {
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Large Desktop */
+@media (min-width: 1200px) {
+    .card-stack-wrapper {
+        max-width: 1000px;
+        height: 650px;
+        perspective: 1400px;
+    }
+    
+    .card-stack-item {
+        width: 850px;
+        height: 500px;
+        box-shadow: 0 35px 70px rgba(0, 0, 0, 0.25), 0 18px 35px rgba(0, 0, 0, 0.18);
+    }
+    
+    .project-slider-container h1 {
+        font-size: 3rem;
+    }
+    
+    .project-slider-container p {
+        font-size: 1.25rem;
+    }
+}
+/* Simple Description Container */
+.description-container {
+    max-width: 800px;
+    margin: 0 auto 2rem auto;
+    /* padding: 2rem; */
+    /* background: rgba(255, 255, 255, 0.9); */
+    border-radius: 15px;
+    /* box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); */
+    backdrop-filter: blur(10px);
+    /* border: 1px solid rgba(255, 255, 255, 0.2); */
+}
+
+.description-container p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #4a4a4a;
+    margin: 0;
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .description-container {
+        max-width: 700px;
+        padding: 1.8rem;
+    }
+    
+    .description-container p {
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+}
+
+/* Mobile Landscape */
+@media (max-width: 768px) {
+    .description-container {
+        max-width: 90%;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .description-container p {
+        font-size: 1rem;
+        line-height: 1.6;
+        text-align: left;
+    }
+}
+
+/* Mobile Portrait */
+@media (max-width: 640px) {
+    .description-container {
+        max-width: 95%;
+        padding: 1.2rem;
+        border-radius: 12px;
+    }
+    
+    .description-container p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+}
+
+/* Extra Small Mobile */
+@media (max-width: 480px) {
+    .description-container {
+        padding: 1rem;
+        border-radius: 10px;
+    }
+    
+    .description-container p {
+        font-size: 0.9rem;
+        line-height: 1.5;
+    }
+}

@@ -1,0 +1,165 @@
+/* Our Clients Section */
+.our-clients {
+  padding: 80px 0;
+  margin: 0 auto;
+}
+
+.clients-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.clients-title {
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: center;
+  /* color: #2c3e50; */
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
+.clients-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 15px;
+}
+
+.client-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 80px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  overflow: hidden; /* Prevent image overflow */
+
+  /* Add shadow */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.client-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+.client-logo {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+  transition: filter 0.3s ease;
+  display: block;
+}
+
+
+/* Responsive Design - Optimized for 16 clients */
+@media (max-width: 1024px) {
+  .clients-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding: 30px;
+    max-width: 900px;
+  }
+  
+  .clients-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .clients-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 25px;
+    max-width: 600px;
+  }
+  
+  .clients-title {
+    font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  
+  .our-clients {
+    padding: 60px 0;
+  }
+  
+  .client-card {
+    min-height: 70px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    padding: 20px;
+    max-width: 400px;
+  }
+  
+  .clients-title {
+    font-size: 1.8rem;
+  }
+  
+  .client-card {
+    min-height: 65px;
+    padding: 12px;
+  }
+  
+  .clients-container {
+    padding: 0 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 15px;
+    max-width: 350px;
+  }
+  
+  .clients-title {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+  
+  .client-card {
+    min-height: 60px;
+    padding: 10px;
+  }
+  
+  .our-clients {
+    padding: 40px 0;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+  .clients-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    padding: 12px;
+    max-width: 300px;
+  }
+  
+  .clients-title {
+    font-size: 1.4rem;
+  }
+  
+  .client-card {
+    min-height: 55px;
+    padding: 8px;
+  }
+}

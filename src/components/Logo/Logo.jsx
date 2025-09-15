@@ -10,7 +10,8 @@ const Logo = () => {
                 <img className="photo" src={logo} alt="" />
             </div>
             <h1 className="name">
-                Liberalty <span>Constructions</span>
+                Liberalty Constructions<br />
+                <span>Private Limited</span>
             </h1>
         </div>
     )

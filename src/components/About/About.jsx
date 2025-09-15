@@ -1,11 +1,7 @@
 import React,{useRef} from "react";
 import "./About.css"
 import { FaCheck } from "react-icons/fa";
-import img from "../Projects/Private/ElevationDesigns/about-image.jpg"
-import { Link } from "react-scroll";
-import img1 from "../Projects/Private/ElevationDesigns/ED_2.jpg"
-import img2 from "../Projects/Private/ElevationDesigns/ED_3.jpg"
-import img3 from "../Projects/Private/ElevationDesigns/ED_4.jpg"
+import img from "./about-image.jpg"
 import gsap from 'gsap'
 import { useGSAP } from "@gsap/react";
 import ScrollTrigger from "gsap/dist/ScrollTrigger"
@@ -70,7 +66,7 @@ const About = () => {
                     </h3>
                     <div className="company__media__container">
 
-                        <div className="box">
+                        {/* <div className="box">
                             <img src={img1} alt="" />
                         </div>
 
@@ -80,16 +76,16 @@ const About = () => {
 
                         <div className="box">
                             <img src={img3} alt="" />
-                        </div>
+                        </div> */}
 
                     </div>
-                    <p className="text__muted description">
-                    To be a globally recognized leader in civil engineering and structural consulting, driving sustainable and innovative solutions that shape a better world.
+                    <p className="text__muted description leading-relaxed ">
+                    Liberalty Constructions Pvt Ltd is a trusted name in engineering solutions, offering expert services in structural design, project consulting, irrigation, infrastructure development, and project management. With a focus on precision, reliability, and innovation, we help bring your projects to life — from planning to execution. Our team of experienced professionals works closely with clients to deliver smart, efficient, and sustainable solutions that meet safety standards, budgets, and timelines. Whether it’s designing a strong structure, managing large infrastructure projects, or providing expert advice, we are committed to building a better future, one project at a time.
                     <br />
-                    Led by <span className="chairperson-name">Reddi Prakash</span>, Chairperson and Managing Director.
+                    Led by Chairperson and Managing Director, <span className="chairperson-name">Reddi Prakash</span>, and Director, <span className="chairperson-name">Uday Kumar.</span>
                     </p>
 
-                    <div className="group">
+                    {/* <div className="group">
 
                         <div className="row">
                             <div className="icon__container">
@@ -131,12 +127,12 @@ const About = () => {
                             </div>
                         </div>
 
-                    </div>
+                    </div> */}
 
-                    <div className="buttons__container">
+                    {/* <div className="buttons__container">
                         <Link to="project" smooth={true} className="btn" >Explore</Link>
                         <Link to="contact" smooth={true} className="btn btn__primary" >Get a quote</Link>
-                    </div>
+                    </div> */}
 
                 </div>
             </div>
