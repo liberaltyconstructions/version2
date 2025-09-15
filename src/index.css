@@ -84,6 +84,7 @@ small{
   line-height: 18px;
 }
 
+/* FIXED: Different container styles for header vs other sections */
 .container{
   width: 100%;
   max-width: 1100px;
@@ -91,20 +92,43 @@ small{
   padding: 60px 20px;
 }
 
-/* FIXED: Remove min-height from regular containers, only apply to header */
-.container.full__height{
+/* Only apply full height to header container */
+#header .container.full__height{
   min-height: 100vh;
 }
 
-/* FIXED: Remove full__height from non-header sections on mobile */
+/* FIXED: Mobile responsive containers */
 @media (max-width: 900px) {
-  .container.full__height:not(#header .container) {
-    min-height: auto;
+  /* Header container gets special treatment */
+  #header .container {
+    padding: 20px 15px !important; /* Override with !important */
+    min-height: auto !important;
   }
   
-  /* Reduce padding on mobile to prevent excessive spacing */
-  .container {
-    padding: 40px 20px;
+  /* Regular containers get reduced padding */
+  .container:not(#header .container) {
+    padding: 30px 20px;
+    min-height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  #header .container {
+    padding: 10px 10px !important;
+  }
+  
+  .container:not(#header .container) {
+    padding: 20px 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  #header .container {
+    padding: 8px 8px !important;
+  }
+  
+  .container:not(#header .container) {
+    padding: 15px 10px;
   }
 }
 
@@ -202,7 +226,7 @@ small{
 }
 
 @media (min-width:1500px){
-  .container.full__height{
+  #header .container.full__height{
     min-height: auto;
   }
 }
@@ -216,5 +240,6 @@ small{
   }
   .btn{
     font-size: 12px;
+    padding: 12px 20px; /* Smaller buttons on mobile */
   }
 }

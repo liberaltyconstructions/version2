@@ -148,3 +148,32 @@
         display: none;
     }
 }
+
+@media (max-width: 600px) {
+  /* Reduce navbar height and padding */
+  .navbar {
+    padding: 6px 12px; /* smaller padding */
+  }
+
+  /* Reduce logo text size */
+  .navbar .logo .name {
+    font-size: 16px; /* smaller than default */
+    line-height: 1.2; /* tighter spacing */
+  }
+
+  .navbar .logo .name span {
+    font-size: 16px; /* keep span consistent */
+  }
+
+  /* If you have a subtitle like "Private Limited" */
+  .navbar .logo .subtitle {
+    font-size: 12px;
+    display: block; /* ensure it's below */
+    line-height: 1.2;
+  }
+
+  /* Reduce menu button size */
+  .navbar .menu__btn {
+    font-size: 1.5rem;
+  }
+}
