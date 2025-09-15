@@ -1,6 +1,7 @@
+/* Header Section */
 #header{
     background: var(--glow-1);
-    position: relative !important;
+    position: static !important;
 }
 
 #header::before{
@@ -22,7 +23,7 @@
     padding-top: 30px;
 }
 
-#header .container >.row{
+#header .container > .row{
     display: flex;
     gap: 60px;
     margin-bottom: 20px;
@@ -39,6 +40,7 @@
 #header .container .row .column1{
     flex: 1;
     max-width: 50%;
+    margin-top: 30px; /* Reduced to better align with text */
 }
 
 #header .container .buttons__container{
@@ -96,10 +98,6 @@
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.column1{
-    margin-top: 30px; /* Reduced to better align with text */
-}
-
 #header .image__container:hover{
     transform: scale(1.05) translateY(-10px);
     box-shadow: 
@@ -135,14 +133,27 @@
     opacity: 1;
 }
 
-/* Responsive Design for Landscape Video */
+/* Typography */
+#header .title {
+    font-size: clamp(1.5rem, 4vw, 2.8rem);
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+#header .description {
+    font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+    line-height: 1.6;
+    color: var(--text-muted, #555);
+}
+
+/* Responsive Design */
 @media (max-width: 1200px) {
     #header .image__container {
         max-width: 600px;
         height: 340px;
     }
     
-    #header .container >.row {
+    #header .container > .row {
         gap: 40px;
     }
 }
@@ -152,7 +163,7 @@
         text-align: center;
     }
 
-    #header .container >.row{
+    #header .container > .row{
         flex-direction: column;
         gap: 40px;
     }
@@ -161,6 +172,7 @@
     #header .container .row .column1 {
         max-width: 100%;
         flex: none;
+        margin-top: 0;
     }
     
     #header .container .buttons__container{
@@ -172,13 +184,17 @@
         height: 310px;
         margin-top: 20px;
     }
-    
-    .column1 {
-        margin-top: 0;
-    }
 }
 
 @media (max-width: 768px) {
+    #header .title {
+        font-size: 1.8rem;
+    }
+    
+    #header .description {
+        font-size: 1rem;
+    }
+    
     #header .image__container {
         max-width: 480px;
         height: 270px;
@@ -219,6 +235,14 @@
 }
 
 @media (max-width: 480px) {
+    #header .title {
+        font-size: 1.4rem;
+    }
+    
+    #header .description {
+        font-size: 0.85rem;
+    }
+    
     #header .image__container {
         max-width: 360px;
         height: 200px;
@@ -238,36 +262,3 @@
     }
 }
 
-/* Title (h1) */
-#header .title {
-  font-size: clamp(1.5rem, 4vw, 2.8rem);
-  line-height: 1.3;
-  font-weight: 700;
-}
-
-/* Description (p) */
-#header .description {
-  font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-  line-height: 1.6;
-  color: var(--text-muted, #555);
-}
-
-/* For tablets/smaller screens */
-@media (max-width: 768px) {
-  #header .title {
-    font-size: 1.8rem;
-  }
-  #header .description {
-    font-size: 1rem;
-  }
-}
-
-/* For very small screens (mobile) */
-@media (max-width: 480px) {
-  #header .title {
-    font-size: 1.4rem;
-  }
-  #header .description {
-    font-size: 0.85rem;
-  }
-}

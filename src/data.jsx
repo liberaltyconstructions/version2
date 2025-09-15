@@ -9,6 +9,7 @@ export const navTabs = [
     {name:"Projects",id:'project'},
     {name:"Testimonial",id:'testimonial'},
     {name:"Clients",id:'ourclients'},
+    {name:"Contact Us",id:'contact'},
 ];
 
 // export const teams = [

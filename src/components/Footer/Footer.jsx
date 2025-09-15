@@ -8,7 +8,7 @@ const Footer = () =>{
         <footer className="footer">
             <div className="footer__container container">
                 {/* <img src={logo} alt="" /> */}
-                <h3 className="title">Liberalty Constructions</h3>
+                <h3 className="title">Liberalty Constructions Private Limited</h3>
 
                 <p className="text__muted ftr">CIN: U05190KA2005PTC036119</p>
 

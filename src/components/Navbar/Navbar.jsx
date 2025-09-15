@@ -24,16 +24,16 @@ const Navbar = () => {
             setVisible(false);
         }
 
-        // Manual active section detection
-        const sections = navTabs.map(tab => ({
-            id: tab.id,
-            element: document.getElementById(tab.id)
-        })).filter(section => section.element);
+        // Manual active section detection - Include contact section
+        const allSections = [
+            ...navTabs.map(tab => ({ id: tab.id, element: document.getElementById(tab.id) })),
+            { id: 'contact', element: document.getElementById('contact') } // Add contact section
+        ].filter(section => section.element);
 
         let currentSection = 'header'; // Default to header
 
-        for (let i = sections.length - 1; i >= 0; i--) {
-            const section = sections[i];
+        for (let i = allSections.length - 1; i >= 0; i--) {
+            const section = allSections[i];
             const rect = section.element.getBoundingClientRect();
             
             // If section is in viewport (considering navbar height)
@@ -98,10 +98,10 @@ const Navbar = () => {
                         </Link>
                     ))
                 }
+                
             </div>
 
             <div className="box buttons">
-                <Link to='contact' className='btn contact__btn' >Contact Us</Link>
                 <div className="icon__container menu__btn" onClick={() => setOpen(!open)} >
                     <RiMenu3Fill/>
                 </div>

@@ -32,6 +32,16 @@
     gap: 10px;
 }
 
+/* Center the nav tabs on desktop */
+.navbar .nav__tabs {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 .navbar .nav__tabs .tab{
     display: flex;
     align-items: center;
@@ -39,6 +49,7 @@
     cursor: pointer;
     color: var(--color-white);
     border-radius: var(--radius-3);
+    white-space: nowrap; /* Prevent text wrapping */
 }
 
 .navbar.visible .nav__tabs .tab{
@@ -51,7 +62,7 @@
     background: var(--gradient-1);
 }
 
-/* NEW: Active state when navbar is visible/sticky */
+/* Active state when navbar is visible/sticky */
 .navbar.visible .nav__tabs .tab.active{
     color: var(--color-white) !important;
     background: var(--gradient-1) !important;
@@ -92,12 +103,14 @@
 
 /* Responsive */
 @media (max-width:1000px){
+    /* Reset centered positioning for mobile */
     .navbar .nav__tabs{
         position: fixed;
+        left: -100%; /* Reset the centered positioning */
+        transform: none; /* Remove transform */
         height: 100%;
         width: 100%;
         top: 0;
-        left: -100%;
         min-height: 100vh;
         max-width: 350px;
         display: block;
@@ -106,6 +119,7 @@
         z-index: 350;
         padding: 20px;
         padding-top: 60px;
+        gap: 0; /* Reset gap for mobile */
     }
 
     .navbar .nav__tabs.open{
@@ -114,9 +128,11 @@
 
     .navbar .nav__tabs .tab{
         color: var(--color-text);
+        margin-bottom: 5px; /* Add spacing between mobile tabs */
+        width: 100%; /* Full width on mobile */
     }
 
-    /* NEW: Mobile active state */
+    /* Mobile active state */
     .navbar .nav__tabs .tab.active{
         color: var(--color-white);
         background: var(--gradient-1);
@@ -132,8 +148,48 @@
     }
 }
 
+/* Adjust for smaller screens to prevent overlap */
+@media (max-width: 1200px) {
+    .navbar .nav__tabs {
+        gap: 5px; /* Reduce gap on smaller screens */
+    }
+    
+    .navbar .nav__tabs .tab {
+        padding: 8px 15px; /* Slightly smaller padding */
+    }
+}
+
 @media (max-width:500px){
     .navbar .contact__btn{
         display: none;
     }
+}
+
+@media (max-width: 600px) {
+  /* Reduce navbar height and padding */
+  .navbar {
+    padding: 6px 12px; /* smaller padding */
+  }
+
+  /* Reduce logo text size */
+  .navbar .logo .name {
+    font-size: 16px; /* smaller than default */
+    line-height: 1.2; /* tighter spacing */
+  }
+
+  .navbar .logo .name span {
+    font-size: 16px; /* keep span consistent */
+  }
+
+  /* If you have a subtitle like "Private Limited" */
+  .navbar .logo .subtitle {
+    font-size: 12px;
+    display: block; /* ensure it's below */
+    line-height: 1.2;
+  }
+
+  /* Reduce menu button size */
+  .navbar .menu__btn {
+    font-size: 1.5rem;
+  }
 }
