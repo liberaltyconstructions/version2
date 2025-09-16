@@ -1,20 +1,59 @@
+import { useState } from 'react';
 import { CardStack } from "../ui/card-stack.tsx";
 import './ProjectSlider.css'
 
 const ProjectSlider = () => {
+  const [popupImage, setPopupImage] = useState(null);
+
+  const openPopup = (imageSrc) => {
+    setPopupImage(imageSrc);
+  };
+
+  const closePopup = () => {
+    setPopupImage(null);
+  };
+
   return (
     <div id='project' className="project-slider-container">
       <h1>Our <span className="g-text">Building Projects</span></h1>
-      <p>Explore our building projects which are perfectly tailored <br /> for the client requirements, vastu, aesthetics and durability</p>
-      <CardStackDemo />
+      <div className="description-container">
+        <p>Explore our building projects which are perfectly tailored for the client requirements, vastu, aesthetics and durability</p>
+      </div>
+      <CardStackDemo onImageClick={openPopup} />
+      
+      {/* Image Popup */}
+      {popupImage && (
+        <div 
+          className={`image-popup-overlay ${popupImage ? 'open' : ''}`}
+          onClick={closePopup}
+        >
+          <div 
+            className="image-popup-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img 
+              src={popupImage} 
+              alt="Project Preview" 
+              className="image-popup-image"
+            />
+            <button 
+              className="image-popup-close"
+              onClick={closePopup}
+              aria-label="Close popup"
+            >
+              ×
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export function CardStackDemo() {
+export function CardStackDemo({ onImageClick }) {
   return (
     <div className="card-stack-container">
-      <CardStack items={CARDS} />
+      <CardStack items={CARDS} onImageClick={onImageClick} />
     </div>
   );
 }

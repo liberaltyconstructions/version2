@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useState } from "react";
 
-let interval: any;
+let interval: ReturnType<typeof setInterval>;
+
 
 type Card = {
   id: number;
@@ -13,11 +14,13 @@ export const CardStack = ({
   offset,
   scaleFactor,
   maxVisibleCards = 4,
+  onImageClick,
 }: {
   items: Card[];
   offset?: number;
   scaleFactor?: number;
   maxVisibleCards?: number;
+  onImageClick?: (imageSrc: string) => void;
 }) => {
   const CARD_OFFSET = offset || 15;
   const SCALE_FACTOR = scaleFactor || 0.06;
@@ -68,6 +71,13 @@ export const CardStack = ({
     }, CYCLE_DURATION);
   };
 
+  const handleImageClick = (imageSrc: string, index: number) => {
+    // Only allow clicking on the top card (index 0)
+    if (index === 0 && onImageClick) {
+      onImageClick(imageSrc);
+    }
+  };
+
   // Only show the specified number of cards in the visual stack
   const visibleCards = cards.slice(0, maxVisibleCards);
 
@@ -96,7 +106,13 @@ export const CardStack = ({
                 : "transform 0.3s ease-out"
             }}
           >
-            <div className="card-image-container">
+            <div 
+              className="card-image-container"
+              onClick={() => handleImageClick(card.image, index)}
+              style={{ 
+                cursor: isTopCard ? 'pointer' : 'default' 
+              }}
+            >
               <img 
                 src={card.image} 
                 alt={`Project ${card.id}`}

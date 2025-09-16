@@ -131,11 +131,14 @@
     }
 }
 
-/* Mobile styles */
+/* Mobile styles - IMPROVED TEXT BALANCING */
 @media (max-width: 900px){
     #about .container{
         grid-template-columns: 100%;
         padding: 40px 25px;
+        /* Add 2px padding from left and right edges */
+        padding-left: 27px; /* 25px + 2px */
+        padding-right: 27px; /* 25px + 2px */
     }
     
     #about .company__photo{
@@ -162,6 +165,7 @@
         font-size: 1rem;
         line-height: 1.7;
         color: rgba(0, 0, 0, 0.85);
+        /* IMPROVED TEXT BALANCING */
         text-align: justify;
         text-justify: inter-word;
         text-wrap: balance;
@@ -170,10 +174,12 @@
         overflow-wrap: break-word;
         max-width: 100%;
         margin: 20px auto 25px auto;
-        padding: 0 5px;
-        /* Better text distribution */
-        columns: auto;
-        column-fill: balance;
+        padding: 0; /* Remove extra padding since container has it */
+        /* Better text distribution and balance */
+        text-rendering: optimizeLegibility;
+        font-feature-settings: "kern" 1, "liga" 1;
+        word-spacing: 0.1em;
+        letter-spacing: 0.01em;
     }
 
     #about .group .buttons__container{
@@ -191,10 +197,13 @@
     }
 }
 
-/* Small mobile styles */
+/* Small mobile styles - ENHANCED PADDING */
 @media (max-width: 600px){
     #about .container{
         padding: 30px 20px;
+        /* Add 2px padding from left and right edges */
+        padding-left: 27px; /* 20px + 2px */
+        padding-right: 27px; /* 20px + 2px */
     }
     
     #about .title{
@@ -210,9 +219,15 @@
         font-size: 0.95rem;
         line-height: 1.6;
         margin: 18px auto 20px auto;
-        text-align: left;
-        /* Better readability on very small screens */
-        text-justify: none;
+        /* IMPROVED BALANCE FOR SMALL SCREENS */
+        text-align: justify;
+        text-justify: inter-word;
+        text-wrap: balance;
+        text-rendering: optimizeLegibility;
+        word-spacing: 0.05em;
+        letter-spacing: 0.005em;
+        hyphens: auto;
+        overflow-wrap: break-word;
     }
     
     #about .company__media__container .box{
@@ -221,15 +236,25 @@
     }
 }
 
-/* Extra small screens */
+/* Extra small screens - MAINTAINED PADDING */
 @media (max-width: 400px) {
     #about .container{
         padding: 25px 15px;
+        /* Add 2px padding from left and right edges */
+        padding-left: 30px; /* 15px + 2px */
+        padding-right: 17px; /* 15px + 2px */
     }
     
     #about .description {
         font-size: 0.9rem;
         line-height: 1.5;
-        padding: 0;
+        /* OPTIMAL BALANCE FOR VERY SMALL SCREENS */
+        text-align: justify;
+        text-justify: inter-word;
+        text-wrap: balance;
+        text-rendering: optimizeLegibility;
+        word-spacing: 0.02em;
+        hyphens: auto;
+        overflow-wrap: break-word;
     }
 }
