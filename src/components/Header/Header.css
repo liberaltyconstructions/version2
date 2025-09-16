@@ -334,3 +334,150 @@
         margin-bottom: 5px;
     }
 }
+/* Enhanced Typography for Better Balance */
+#header .description {
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    line-height: 1.6;
+    color: var(--text-muted, #666);
+    margin-bottom: 30px;
+    max-width: 90%; /* Prevent text from stretching too wide */
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-align: justify; /* Justify text for balanced edges */
+    text-justify: inter-word; /* Better word spacing */
+}
+
+/* Large Desktop - Optimal reading width */
+@media (max-width: 1400px) {
+    #header .description {
+        font-size: clamp(1.05rem, 2.3vw, 1.25rem);
+        line-height: 1.65;
+        max-width: 85%;
+        text-align: justify;
+    }
+}
+
+/* Desktop - Balanced proportions */
+@media (max-width: 1200px) {
+    #header .description {
+        font-size: clamp(1rem, 2.2vw, 1.2rem);
+        line-height: 1.6;
+        max-width: 88%;
+        margin-bottom: 25px;
+        text-align: justify;
+    }
+}
+
+/* Tablet Landscape - Comfortable reading */
+@media (max-width: 1024px) {
+    #header .description {
+        font-size: clamp(0.98rem, 2.1vw, 1.15rem);
+        line-height: 1.58;
+        max-width: 90%;
+        margin-bottom: 22px;
+        text-align: justify;
+    }
+}
+
+/* Tablet Portrait & Mobile Landscape - Switch to left-align for better mobile readability */
+@media (max-width: 900px) {
+    #header .description {
+        font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+        line-height: 1.55;
+        margin-bottom: 15px;
+        max-width: 95%; /* Allow more width on smaller screens */
+        text-align: left; /* Left align for better mobile readability */
+        word-spacing: 0.12em; /* Add slight word spacing for balance */
+    }
+}
+
+/* Mobile Large - Left align with proper width for mobile readability */
+@media (max-width: 768px) {
+    #header .description {
+        font-size: clamp(0.92rem, 3.2vw, 1.1rem);
+        line-height: 1.5;
+        margin-bottom: 12px;
+        max-width: 100%;
+        padding: 0 15px; /* Add side padding for breathing room */
+        text-align: left; /* Left align for better mobile readability */
+        word-spacing: 0.1em; /* Slightly increase word spacing for better balance */
+    }
+}
+
+/* Mobile Medium - Left align with balanced spacing */
+@media (max-width: 640px) {
+    #header .description {
+        font-size: clamp(0.9rem, 3vw, 1.05rem);
+        line-height: 1.48;
+        margin-bottom: 10px;
+        padding: 0 12px;
+        letter-spacing: 0.01em;
+        text-align: left;
+        word-spacing: 0.08em;
+    }
+}
+
+/* Mobile Small - Left align with optimized spacing */
+@media (max-width: 480px) {
+    #header .description {
+        font-size: clamp(0.85rem, 2.8vw, 1rem);
+        line-height: 1.45;
+        margin-bottom: 8px;
+        padding: 0 10px;
+        font-weight: 400;
+        text-align: left;
+        word-spacing: 0.05em;
+        letter-spacing: 0.005em;
+    }
+}
+
+/* Extra Small Mobile - Left align with minimal spacing adjustments */
+@media (max-width: 360px) {
+    #header .description {
+        font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+        line-height: 1.4;
+        margin-bottom: 5px;
+        padding: 0 8px;
+        letter-spacing: 0;
+        text-align: left;
+        word-spacing: 0.03em;
+    }
+}
+
+/* Additional Enhancement: Ensure text doesn't break awkwardly */
+#header .description {
+    word-wrap: break-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+}
+
+/* For better visual hierarchy on all screens */
+@media (min-width: 1025px) {
+    #header .description {
+        text-align: justify; /* Justified text only for desktop/large tablet */
+    }
+}
+
+/* Mobile-specific improvements for better text balance */
+@media (max-width: 1024px) {
+    #header .description {
+        text-align: left; /* Left align for tablet portrait and mobile */
+        hyphens: auto; /* Enable hyphenation for better line breaks */
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+    }
+}
+
+/* Ensure proper spacing relationship with title */
+@media (max-width: 900px) {
+    #header .title + .description {
+        margin-top: 8px; /* Consistent spacing after title */
+    }
+}
+
+@media (max-width: 480px) {
+    #header .title + .description {
+        margin-top: 5px;
+    }
+}
