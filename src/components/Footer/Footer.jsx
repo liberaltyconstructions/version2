@@ -27,7 +27,7 @@ const Footer = () =>{
                 </div>
 
                 <span className="footer__copy">
-                &#169; Liberalty Constructions pvt ltd. All rigths reserved
+                &#169; Liberalty Constructions Pvt Ltd. All rights reserved
                 </span>
 
             </div>

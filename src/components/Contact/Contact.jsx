@@ -1,7 +1,10 @@
+
 import React, { useRef } from "react";
 import "./Contact.css"
 import { contacts } from "../../data"
 import emailjs from '@emailjs/browser';
+import { MdOutlineAlternateEmail } from 'react-icons/md';
+import { IoCallOutline, IoLocationOutline } from 'react-icons/io5';
 
 const Contact = () => {
     const form = useRef();
@@ -20,6 +23,38 @@ const Contact = () => {
         
         // Clear the form
         e.target.reset();
+    };
+
+    // Function to generate appropriate links based on contact type
+    const getContactLink = (contact) => {
+        switch (contact.name) {
+            case "Email":
+                return `mailto:${contact.value}`;
+            case "Phone Number":
+                // Extract the first phone number for the link
+                const phoneNumber = contact.value.split('||')[0].trim().replace(/\s+/g, '');
+                return `tel:${phoneNumber}`;
+            case "Address":
+                // Create Google Maps link
+                const encodedAddress = encodeURIComponent(contact.value);
+                return `https://www.google.com/maps/search/?api=1&query=${encodedAddress}`;
+            default:
+                return "#";
+        }
+    };
+
+    // Function to get appropriate button text
+    const getButtonText = (contact) => {
+        switch (contact.name) {
+            case "Email":
+                return "Send Email";
+            case "Phone Number":
+                return "Call Now";
+            case "Address":
+                return "View on Map";
+            default:
+                return "Contact Us";
+        }
     };
 
     return(
@@ -64,7 +99,14 @@ const Contact = () => {
                                 <h3 className="name"> {contact.name} </h3>
                                 <h4 className="text__muted">{contact.value}</h4>
                                 <div>
-                                    <a href={"#"} className="btn btn__primary">Contact Us</a>
+                                    <a 
+                                        href={getContactLink(contact)} 
+                                        className="btn btn__primary"
+                                        target={contact.name === "Address" ? "_blank" : "_self"}
+                                        rel={contact.name === "Address" ? "noopener noreferrer" : ""}
+                                    >
+                                        {getButtonText(contact)}
+                                    </a>
                                 </div>
                             </div>
                         ))
